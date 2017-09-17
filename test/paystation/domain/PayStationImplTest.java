@@ -15,6 +15,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
 
+
+
 public class PayStationImplTest {
 
     PayStation ps;
@@ -138,4 +140,16 @@ public class PayStationImplTest {
         assertEquals("Insert after cancel should work",
                 10, ps.readDisplay());
     }
+
+    /* verify that cancelling returns the correct coins */
+    @Test
+    public void shouldReturnCorrectCoinsAfterCancel()
+            throws IllegalCoinException {
+        ps.addPayment(10);
+        ps.addPayment(25);
+        ps.addPayment(25);
+        ps.cancel();
+
+    }
 }
+

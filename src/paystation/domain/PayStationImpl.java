@@ -23,7 +23,8 @@ import java.util.Map;
  * purposes. For any commercial use, see http://www.baerbak.com/
  */
 public class PayStationImpl implements PayStation {
-    
+
+
     private int insertedSoFar;
     private int timeBought;
 
@@ -59,6 +60,7 @@ public class PayStationImpl implements PayStation {
         }
         insertedSoFar += coinValue;
         timeBought = insertedSoFar / 5 * 2;
+
     }
 
     @Override
@@ -73,6 +75,8 @@ public class PayStationImpl implements PayStation {
 
         //reset the coinMap
         clearMap();
+        // call empty
+        empty();
 
         return r;
     }
@@ -80,6 +84,12 @@ public class PayStationImpl implements PayStation {
     public Map cancel() {
 
         Map tempMap = coinMap;
+        int tempNickels = numberOfNickels;
+        int tempDimes = numberOfDimes;
+        int tempQuarters = numberOfQuarters;
+        tempMap.put(tempNickels,  tempNickels);
+        tempMap.put(tempDimes,    tempDimes);
+        tempMap.put(tempQuarters, tempQuarters);
 
         //call empty, which also calls reset
         empty();
